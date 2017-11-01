@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgcolor_gray">
+    <LinearLayout
+        android:id="@+id/reply_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/reply_text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小明:"
+            android:textSize="20dp"
+            android:textColor="@color/blue"/>
+        <TextView
+            android:id="@+id/reply_text_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小明"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+</LinearLayout>

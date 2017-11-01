@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <android.support.v4.widget.NestedScrollView
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.wangsheng.statusbardemo.ScrollingActivity"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical" >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/lgn_textView1_sdms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="18sp"
+                        android:clickable="true"
+                        android:text="手动模式"
+                        android:paddingLeft="30dp"/>
+
+                    <ImageView
+                        android:id="@+id/lgn_imageView_off1"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:clickable="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/image_light_off" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/lgn_textView1_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:text="1"
+                        android:textColor="@color/black"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/lgn_textView1_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="30sp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="2"
+                        />
+                    <TextView
+                        android:id="@+id/lgn_textView1_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="30sp"
+                        android:clickable="true"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="3"
+                        />
+                    <TextView
+                        android:id="@+id/lgn_textView1_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="30sp"
+                        android:clickable="true"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="4"
+                        />
+
+                    <TextView
+                        android:id="@+id/lgn_textView1_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="5"
+                        android:textColor="@color/black"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/lgn_textView1_zdms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="18sp"
+                        android:clickable="true"
+                        android:text="自动模式"
+                        android:paddingLeft="30dp"/>
+
+                    <ImageView
+                        android:id="@+id/lgn_imageView_off2"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:clickable="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/image_light_off" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <View android:layout_height="1px"
+                        android:background="#000000"
+                        android:layout_width="80dp"
+                        android:layout_gravity="center_vertical">
+
+                    </View>
+                    <TextView
+                        android:id="@+id/lgn_textView1_cj"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="18sp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:text="场景"
+                        />
+
+                    <View android:layout_height="1px"
+                        android:background="#000000"
+                        android:layout_width="80dp"
+                        android:layout_gravity="center_vertical">
+
+                    </View>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/lgn_textView1_kt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:text="客厅 "
+                        android:textColor="@drawable/bg_textcolor_light"
+                        android:textSize="23sp"/>
+
+                    <TextView
+                        android:id="@+id/lgn_textView1_ws"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@drawable/bg_textcolor_light"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="23sp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="卧室"
+                        />
+                    <TextView
+                        android:id="@+id/lgn_textView1_cf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@drawable/bg_textcolor_light"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="23sp"
+                        android:clickable="true"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="厨房"
+                        />
+
+                    <TextView
+                        android:id="@+id/lgn_textView1_yy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="影院"
+                        android:clickable="true"
+                        android:textColor="@drawable/bg_textcolor_light"
+                        android:textSize="23sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <View android:layout_height="1px"
+                        android:background="#000000"
+                        android:layout_width="80dp"
+                        android:layout_gravity="center_vertical">
+
+                    </View>
+                    <TextView
+                        android:id="@+id/lgn_textView1_zt"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="18sp"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="状态"
+                        />
+
+                    <View android:layout_height="1px"
+                        android:background="#000000"
+                        android:layout_width="80dp"
+                        android:layout_gravity="center_vertical">
+
+                    </View>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/lgn_textView1_xx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:text="休息"
+                        android:textColor="@drawable/bg_textcolor_light"
+                        android:textSize="23sp" />
+
+                    <TextView
+                        android:id="@+id/lgn_textView1_pd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="23sp"
+                        android:clickable="true"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@drawable/bg_textcolor_light"
+                        android:text="派对"
+                        />
+                    <TextView
+                        android:id="@+id/lgn_textView1_gz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="23sp"
+                        android:clickable="true"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@drawable/bg_textcolor_light"
+                        android:text="工作"
+                        />
+
+                    <TextView
+                        android:id="@+id/lgn_textView1_mx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="冥想"
+                        android:textColor="@drawable/bg_textcolor_light"
+                        android:textSize="23sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:statusBarScrim="@android:color/transparent">
+
+            <!--封面图片-->
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_light_head"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.7" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="top"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <ImageView
+                    android:id="@+id/imageView_bg"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/ic_back" />
+
+            </android.support.v7.widget.Toolbar>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12.5dp"
+                    android:text="灯光控制"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+                <TextView
+                    android:id="@+id/lgnew_textView_dangqian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="当前模式"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:layout_marginTop="76dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentTop="true" />
+
+                <TextView
+                    android:id="@+id/lg_textView3_zidong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="自动"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:layout_above="@+id/lg_textView_xuanxiang"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="28dp" />
+
+                <TextView
+                    android:id="@+id/lg_textView_xuanxiang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="派对"
+                    android:textColor="@color/white"
+                    android:textSize="33sp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="36dp" />
+            </RelativeLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+</android.support.design.widget.CoordinatorLayout>

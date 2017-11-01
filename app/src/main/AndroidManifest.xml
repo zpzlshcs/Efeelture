@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.windows8.newef">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_app"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.CriActivity" />
+        <activity android:name=".activity.AddFriendActivity" />
+        <activity android:name=".activity.AddCriActivity" />
+        <activity android:name=".activity.UserHardActivity" />
+        <activity android:name=".activity.AddHardActivity" />
+        <activity android:name=".activity.WindActivity" />
+        <activity android:name=".activity.LightActivity" />
+        <activity android:name=".activity.ChatActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.FriendCriActivity"></activity>
+    </application>
+
+</manifest>
