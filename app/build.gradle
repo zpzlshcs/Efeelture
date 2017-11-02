@@ -53,8 +53,8 @@ dependencies {
     compile 'com.hyman:flowlayout-lib:1.1.2'
     compile 'com.zhy:base-rvadapter:3.0.3'
     compile 'com.zaaach:toprightmenu:1.0'
-    testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'me.kareluo.ui:popmenu:1.1.0'
     compile 'com.wuxiaolong.pullloadmorerecyclerview:library:1.1.2'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }

@@ -32,11 +32,11 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:text="小明"
-                android:textSize="17dp" />
+                android:textSize="25dp" />
             <ImageView
                 android:id="@+id/iv_back"
                 android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
                 android:layout_marginRight="16dp"
                 android:layout_gravity="left"
                 android:src="@drawable/ic_back"/>

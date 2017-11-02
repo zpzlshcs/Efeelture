@@ -55,8 +55,8 @@
                     android:layout_height="match_parent">
                     <ImageView
                         android:id="@+id/imageView_bg"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
                         android:src="@drawable/ic_back"
                         android:layout_centerVertical="true"
                         android:layout_alignParentLeft="true"

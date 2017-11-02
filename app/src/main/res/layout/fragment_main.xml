@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical" >
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -22,42 +23,42 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="left"
-                app:civ_border_color="#ffffff"
-                app:civ_border_width="1dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/ic_user" />
+                android:src="@drawable/ic_user"
+                app:civ_border_color="#ffffff"
+                app:civ_border_width="1dp" />
 
             <ImageView
                 android:id="@+id/iv_more"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginRight="16dp"
                 android:layout_gravity="right"
-                android:src="@drawable/ic_add"/>
+                android:layout_marginRight="16dp"
+                android:src="@drawable/ic_add" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
+                android:layout_height="32dp"
                 android:layout_marginRight="16dp"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:gravity="center"
-                android:layout_height="32dp">
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:text="E"
                     android:textColor="#127C56"
-                    android:textSize="20dp" />
+                    android:textSize="25dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Feelture"
-                    android:textSize="20dp"
-                    android:textColor="@color/yellow" />
-
+                    android:textColor="@color/yellow"
+                    android:textSize="25dp" />
 
 
             </LinearLayout>

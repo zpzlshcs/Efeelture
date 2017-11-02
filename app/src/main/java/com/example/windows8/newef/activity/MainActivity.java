@@ -1,5 +1,7 @@
 package com.example.windows8.newef.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.windows8.newef.R;
 import com.example.windows8.newef.fragment.MainFragment;
@@ -26,14 +29,12 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
+        implements NavigationView.OnNavigationItemSelectedListener{
     public static DrawerLayout drawer;
     @BindView(R.id.bottom_nav)
     BottomNavigationView bottomNav;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
-
-
     Fragment mainFragment;
     Fragment momentFragment;
     Fragment messageFragment;
@@ -61,6 +62,17 @@ public class MainActivity extends AppCompatActivity
                             View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
                 }
 
+            }
+        });
+        View header = navigationView.getHeaderView(0);
+        TextView uname = (TextView)header.findViewById(R.id.user_name) ;
+        uname.setText(getSharedPreferences("information", Context.MODE_PRIVATE).getString("uid","111111"));
+        CircleImageView ivUserIconNav = (CircleImageView) header.findViewById(R.id.civ_user_icon);
+        ivUserIconNav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AboutmeActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -98,15 +110,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-        View header = navigationView.getHeaderView(0);
-        CircleImageView ivUserIconNav = (CircleImageView) header.findViewById(R.id.civ_user_icon);
-        ivUserIconNav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
     private void showFragment(Fragment fragment) {
@@ -138,15 +141,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected( MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_slideshow:
+            case R.id.nav_setting:
+                Intent setting = new Intent(this,SettingActivity.class);
+                startActivity(setting);
+                break;
+            case R.id.nav_hard:
+                Intent hard = new Intent(this,UserHardActivity.class);
+                startActivity(hard);
                 break;
         }
 
         return false;
-    }
-
-    @Override
-    public void onClick(View view) {
-
     }
 }

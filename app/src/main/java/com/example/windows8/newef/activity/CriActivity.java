@@ -1,18 +1,21 @@
 package com.example.windows8.newef.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.windows8.newef.R;
@@ -30,12 +33,17 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CriActivity extends AppCompatActivity {
     @BindView(R.id.recy_cri)
     RecyclerView recyclerView;
     @BindView(R.id.cri_swipeRefreshLayout)
     SwipeRefreshLayout criswipeRefreshLayout;
+    @BindView(R.id.imageView_bg)
+    ImageView back;
+    @BindView(R.id.imageView_add)
+    ImageView add;
     List<HashMap<String,Object>> list = new ArrayList<HashMap<String, Object>>();
     List<HashMap<String,Object>> allData = new ArrayList<HashMap<String, Object>>();
     CriAdapter adapter;
@@ -58,45 +66,6 @@ public class CriActivity extends AppCompatActivity {
         GridLayoutManager mLayoutManager=new GridLayoutManager(CriActivity.this,1,GridLayoutManager.VERTICAL,false);//设置为一个1列的纵向网格布局
         recyclerView.setLayoutManager(mLayoutManager);
         adapter = new CriAdapter(this,list,uid);
-        adapter.setCriListener(new CriAdapter.CriListener() {
-            @Override
-            public void addLike(final String messageid, View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String zson = "messageid:\"" + messageid
-                                + "\",uid:\"" + uid + "\"";
-                        JSONObject result = new getData(zson,CriActivity.this,"1041").getResult();
-                        if(result == null){
-                            Looper.prepare();
-                            Toast.makeText(CriActivity.this, "点赞失败", Toast.LENGTH_SHORT).show();
-                            Looper.loop();
-                        }
-                    }
-                }).start();
-                v.setClickable(true);
-            }
-
-            @Override
-            public void deleteLike(String likeid, View v) {
-
-            }
-
-            @Override
-            public void addreply(String messageid, String content, View v) {
-
-            }
-
-            @Override
-            public void deletereply(String replyid, View v) {
-
-            }
-
-            @Override
-            public void refreshlikenum(String messageid, TextView v) {
-
-            }
-        });
         recyclerView.setAdapter(adapter);
         recyclerView.addOnScrollListener(new RecyScroll(mLayoutManager) {  //如果有则加载更多数据
             @Override
@@ -183,7 +152,7 @@ public class CriActivity extends AppCompatActivity {
                                 likeData.add(likemap);
                                 if(likemap.get("uid").equals(uid)) {
                                     hashMap.put("islike","1");
-                                    hashMap.put("likeid","likeobj.getString(\"id\")");
+                                    hashMap.put("likeid",likemap.get("likeid"));
                                 }
                             }
                         }
@@ -235,5 +204,23 @@ public class CriActivity extends AppCompatActivity {
             super.onPreExecute();
         }
 
+    }
+    private Handler refreshlike = new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            adapter.notifyDataSetChanged();
+        }
+    };
+    @OnClick({R.id.imageView_bg,R.id.imageView_add})
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.imageView_bg:
+                finish();
+                break;
+            case R.id.imageView_add:
+                Intent intent = new Intent(this,AddCriActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

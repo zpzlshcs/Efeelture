@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.example.windows8.newef.R;
 import com.example.windows8.newef.activity.AddFriendActivity;
+import com.example.windows8.newef.activity.AddHardActivity;
 import com.example.windows8.newef.activity.LightActivity;
 import com.example.windows8.newef.activity.MainActivity;
 import com.example.windows8.newef.activity.WindActivity;
@@ -85,6 +86,8 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                                         startActivity(addf);
                                         break;
                                     case 1:
+                                        Intent addh = new Intent(getActivity(), AddHardActivity.class);
+                                        startActivity(addh);
                                         break;
                                 }
                             }

@@ -23,6 +23,7 @@ import com.example.windows8.newef.R;
 import com.example.windows8.newef.custom.CodeUtils;
 import com.example.windows8.newef.custom.getData;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
@@ -109,10 +110,23 @@ public class LoginActivity extends AppCompatActivity {
                                     Looper.loop();
                                 }
                                 else{
+                                    try{
+                                        JSONObject obj = result.getJSONObject("user");
+                                        SharedPreferences user = getSharedPreferences("information", Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = user.edit();
+                                        editor.putString("uid", obj.getString("id"));
+                                        editor.putString("uname", obj.getString("uname"));
+                                        editor.putString("phone", obj.getString("phone"));
+                                        editor.putString("password", obj.getString("upassword"));
+                                        editor.commit();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
                                     SharedPreferences islogin = getSharedPreferences("islogin", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor2 = islogin.edit();
                                     editor2.putString("islogin", "1");
                                     editor2.commit();
+
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     LoginActivity.this.finish();

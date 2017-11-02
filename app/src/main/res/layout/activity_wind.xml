@@ -361,6 +361,7 @@
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
@@ -397,8 +398,8 @@
 
                 <ImageView
                     android:id="@+id/imageView_bg"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="30dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/ic_back" />
 
             </android.support.v7.widget.Toolbar>
@@ -406,13 +407,14 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:id="@+id/toolbar_user_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12.5dp"
-                    android:text="空调控制"
                     android:gravity="center"
+                    android:text="空调控制"
                     android:textColor="@color/white"
                     android:textSize="25sp" />
 
@@ -421,26 +423,26 @@
                     android:id="@+id/airnew_textView_dangqian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
                     android:layout_marginTop="60dp"
                     android:clickable="true"
                     android:gravity="top"
                     android:text="当前模式"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/textView_xuanxiang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="制冷"
-                    android:textColor="@color/white"
-                    android:textSize="33sp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="30dp" />
+                    android:layout_marginBottom="30dp"
+                    android:text="制冷"
+                    android:textColor="@color/white"
+                    android:textSize="33sp" />
             </RelativeLayout>
 
             <!--<android.support.design.widget.TabLayout-->
