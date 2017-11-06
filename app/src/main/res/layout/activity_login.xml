@@ -15,26 +15,27 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:scrollbars="none" >
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp" >
+                android:layout_height="80dp">
 
                 <EditText
                     android:id="@+id/edittext_phone"
                     android:layout_width="match_parent"
                     android:layout_height="37dp"
+                    android:layout_gravity="bottom"
                     android:layout_marginLeft="90dp"
                     android:layout_marginRight="30dp"
                     android:background="#00000000"
                     android:ems="10"
-                    android:layout_gravity="bottom"
+                    android:imeOptions="actionGo"
                     android:inputType="textPersonName" />
 
                 <TextView
@@ -56,24 +57,25 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:background="#66CDAA" >
+                android:background="#66CDAA">
 
             </View>
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp" >
+                android:layout_height="80dp">
 
                 <EditText
                     android:id="@+id/edittext_password"
                     android:layout_width="match_parent"
                     android:layout_height="37dp"
+                    android:layout_gravity="bottom"
                     android:layout_marginLeft="90dp"
                     android:layout_marginRight="30dp"
                     android:background="#00000000"
                     android:ems="10"
-                    android:layout_gravity="bottom"
-                    android:inputType="textPassword" >
+                    android:imeOptions="actionGo"
+                    android:inputType="textPassword">
 
                 </EditText>
 
@@ -88,7 +90,6 @@
                     android:textSize="15sp" />
 
 
-
             </FrameLayout>
 
             <View
@@ -98,14 +99,14 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:background="#66CDAA" >
+                android:background="#66CDAA">
 
             </View>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp" >
+                android:layout_marginTop="25dp">
 
                 <ImageView
                     android:id="@+id/image_code"
@@ -113,6 +114,7 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="30dp"
                     android:src="@drawable/ic_sport" />
+
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -126,11 +128,12 @@
                         android:layout_marginRight="30dp"
                         android:layout_marginTop="2dp"
                         android:layout_weight="1"
-                        android:ems="10"
                         android:background="#00000000"
+                        android:ems="10"
                         android:hint="  请输入验证码"
                         android:textColorHint="@color/blue"
-                        android:textSize="15dp" >
+                        android:imeOptions="actionGo"
+                        android:textSize="15dp">
 
 
                     </EditText>
@@ -138,14 +141,13 @@
                     <View
                         android:layout_width="fill_parent"
                         android:layout_height="3px"
-                        android:gravity="center_vertical"
+                        android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="30dp"
-                        android:layout_gravity="bottom"
-                        android:background="#66CDAA" >
+                        android:background="#66CDAA"
+                        android:gravity="center_vertical">
 
                     </View>
-
 
 
                 </FrameLayout>
@@ -195,10 +197,10 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/white"
                 android:background="@drawable/bg_loginbutton"
-                android:textSize="20sp"
-                android:text="注  册" />
+                android:text="注  册"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_anonymous"

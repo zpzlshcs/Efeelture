@@ -14,9 +14,11 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.windows8.newef.R;
@@ -82,67 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO 自动生成的方法存根
-                strcode = code.getText().toString().trim();
-                Log.e("strcode", strcode);
-                if (null == strcode || TextUtils.isEmpty(strcode)) {
-
-                    Toast.makeText(LoginActivity.this, "请输入验证码", Toast.LENGTH_SHORT).show();
-
-                    return;
-                }
-                String code = codeUtils.getCode();
-                Log.e("code", code);
-                if (code.equalsIgnoreCase(strcode)) {
-                    new Thread() {
-                        public void run() {
-                            strphone = phone.getText().toString();
-                            strpassword = password.getText().toString();
-                            Map<String,String> map = new HashMap<String, String>();
-                            map.put("phone",strphone);
-                            map.put("upassword",strpassword);
-                            try {
-                                String zson = "phone:\"" + URLEncoder.encode(strphone, "UTF-8")
-                                        + "\",upassword:\"" + URLEncoder.encode(strpassword, "UTF-8") + "\"";
-                                JSONObject result = new getData(zson,LoginActivity.this,"1093").getResult();
-                                if(result == null){
-                                    Looper.prepare();
-                                    Toast.makeText(LoginActivity.this, "用户名或密码不正确", Toast.LENGTH_SHORT).show();
-                                    Looper.loop();
-                                }
-                                else{
-                                    try{
-                                        JSONObject obj = result.getJSONObject("user");
-                                        SharedPreferences user = getSharedPreferences("information", Context.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = user.edit();
-                                        editor.putString("uid", obj.getString("id"));
-                                        editor.putString("uname", obj.getString("uname"));
-                                        editor.putString("phone", obj.getString("phone"));
-                                        editor.putString("password", obj.getString("upassword"));
-                                        editor.commit();
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                    SharedPreferences islogin = getSharedPreferences("islogin", Context.MODE_PRIVATE);
-                                    SharedPreferences.Editor editor2 = islogin.edit();
-                                    editor2.putString("islogin", "1");
-                                    editor2.commit();
-
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    LoginActivity.this.finish();
-                                }
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
-                            }
-
-                        };
-                    }.start();
-
-                } else {
-
-                    Toast.makeText(LoginActivity.this, "验证码错误", Toast.LENGTH_SHORT).show();
-
-                }
+                dologin();
             }
         });
         anonymous.setOnClickListener(new View.OnClickListener() {// 匿名登录
@@ -171,7 +113,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent2 = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent2);
-
             }
         });
         forget.setOnClickListener(new View.OnClickListener() {
@@ -205,5 +146,84 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+    EditText.OnEditorActionListener editorActionListener = new EditText.OnEditorActionListener(){
+
+        @Override
+        public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+            boolean isOK = true;
+            switch (actionId) {
+                case EditorInfo.IME_ACTION_GO:
+                    dologin();
+                    break;
+                default:
+                    isOK = false;
+                    break;
+            }
+            return isOK;
+        }
+    };
+    public void dologin(){
+        strcode = code.getText().toString().trim();
+        Log.e("strcode", strcode);
+        if (null == strcode || TextUtils.isEmpty(strcode)) {
+
+            Toast.makeText(LoginActivity.this, "请输入验证码", Toast.LENGTH_SHORT).show();
+
+            return;
+        }
+        String code = codeUtils.getCode();
+        Log.e("code", code);
+        if (code.equalsIgnoreCase(strcode)) {
+            new Thread() {
+                public void run() {
+                    strphone = phone.getText().toString();
+                    strpassword = password.getText().toString();
+                    Map<String,String> map = new HashMap<String, String>();
+                    map.put("phone",strphone);
+                    map.put("upassword",strpassword);
+                    try {
+                        String zson = "phone:\"" + URLEncoder.encode(strphone, "UTF-8")
+                                + "\",upassword:\"" + URLEncoder.encode(strpassword, "UTF-8") + "\"";
+                        JSONObject result = new getData(zson,LoginActivity.this,"1093").getResult();
+                        if(result == null){
+                            Looper.prepare();
+                            Toast.makeText(LoginActivity.this, "用户名或密码不正确", Toast.LENGTH_SHORT).show();
+                            Looper.loop();
+                        }
+                        else{
+                            try{
+                                JSONObject obj = result.getJSONObject("user");
+                                SharedPreferences user = getSharedPreferences("information", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = user.edit();
+                                editor.putString("uid", obj.getString("id"));
+                                editor.putString("uname", obj.getString("uname"));
+                                editor.putString("phone", obj.getString("phone"));
+                                editor.putString("password", obj.getString("upassword"));
+                                editor.commit();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            SharedPreferences islogin = getSharedPreferences("islogin", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor2 = islogin.edit();
+                            editor2.putString("islogin", "1");
+                            editor2.commit();
+
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            LoginActivity.this.finish();
+                        }
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+
+                };
+            }.start();
+
+        } else {
+
+            Toast.makeText(LoginActivity.this, "验证码错误", Toast.LENGTH_SHORT).show();
+
+        }
     }
 }

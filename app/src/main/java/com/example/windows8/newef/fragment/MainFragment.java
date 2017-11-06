@@ -15,6 +15,7 @@ import com.example.windows8.newef.activity.AddFriendActivity;
 import com.example.windows8.newef.activity.AddHardActivity;
 import com.example.windows8.newef.activity.LightActivity;
 import com.example.windows8.newef.activity.MainActivity;
+import com.example.windows8.newef.activity.MusicActivity;
 import com.example.windows8.newef.activity.WindActivity;
 import com.zaaach.toprightmenu.MenuItem;
 import com.zaaach.toprightmenu.TopRightMenu;
@@ -38,6 +39,10 @@ public class MainFragment extends Fragment implements View.OnClickListener{
     @BindView(R.id.ciriv_user_icon)CircleImageView usericon;
     @BindView(R.id.iv_more)
     ImageView ivmore;
+    @BindView(R.id.image_sport)
+    ImageView sport;
+    @BindView(R.id.image_music)
+    ImageView music;
     Unbinder unbinder;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,9 +51,13 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         return view;
     }
 
-    @OnClick({R.id.image_wind,R.id.ciriv_user_icon,R.id.iv_more,R.id.image_light})
+    @OnClick({R.id.image_wind,R.id.ciriv_user_icon,R.id.iv_more,R.id.image_light,R.id.image_music,R.id.image_sport})
     public void onClick(View view) {
         switch (view.getId()){
+            case R.id.image_music:
+                Intent music = new Intent(getActivity(),MusicActivity.class);
+                startActivity(music);
+                break;
             case R.id.image_light:
                 Intent light = new Intent(getActivity(),LightActivity.class);
                 startActivity(light);
@@ -69,7 +78,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
                 mTopRightMenu
                         .setHeight(240)     //默认高度480
-                        .setWidth(200)      //默认宽度wrap_content
+                        //.setWidth(200)      //默认宽度wrap_content
                         .showIcon(false)     //显示菜单图标，默认为true
                         .dimBackground(true)        //背景变暗，默认为true
                         .needAnimationStyle(true)   //显示动画，默认为true
@@ -95,6 +104,9 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                         .showAsDropDown(ivmore,-100,0);	//带偏移量
 //      		.showAsDropDown(moreBtn)
                 break;
+            case R.id.image_sport:
+//                Intent sport = new Intent(getActivity(), SportActivity.class);
+//                startActivity(sport);
         }
     }
 }

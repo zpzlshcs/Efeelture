@@ -23,6 +23,11 @@ android {
 
     }
 }
+repositories {
+    flatDir {
+        dirs 'lib' //就是你放aar的目录地址
+    }
+}
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -36,7 +41,11 @@ dependencies {
     compile group: 'com.nineoldandroids', name: 'library', version: '2.4.0'
     //https://github.com/zaaach/TopRightMenu
 
-
+    //其他依赖包
+    compile name: 'SMSSDK-3.0.0', ext: 'aar'
+    compile name: 'SMSSDKGUI-3.0.0', ext: 'aar'
+    compile files('lib/MobCommons-2017.0607.1736.jar')
+    compile files('lib/MobTools-2017.0607.1736.jar')
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:design:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

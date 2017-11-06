@@ -15,4 +15,5 @@
     <color name="red">#ffff0000</color>
     <color name="background">#f4f4f4</color>
     <color name="dark_black">#1f1f1f</color>
+    <color name="display_background">#ff000000</color>
 </resources>

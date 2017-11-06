@@ -8,10 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.windows8.newef.R;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LightActivity extends AppCompatActivity {
@@ -34,8 +32,6 @@ public class LightActivity extends AppCompatActivity {
     private TextView mingxiang;
     private TextView zdsd;
     boolean isChanged = false;
-    @BindView(R.id.imageview)
-    ImageView ivMyBg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +45,6 @@ public class LightActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
         ButterKnife.bind(this);
-        Glide.with(this)
-                .load(R.drawable.bg_light_head)
-                .into(ivMyBg);
         xuanxiang = (TextView) findViewById(R.id.lg_textView_xuanxiang);
         shoudong = (ImageView) findViewById(R.id.lgn_imageView_off1);
         zidong = (ImageView) findViewById(R.id.lgn_imageView_off2);

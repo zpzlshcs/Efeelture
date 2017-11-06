@@ -135,7 +135,7 @@ public class MessageListFragment extends Fragment {
                 HashMap<String, Object> map1 = new HashMap<String, Object>();
                 map1.put("image", R.drawable.side_nav_bar);
                 map1.put("text", talktolist[i]);
-                map1.put("text2", "在？吗♂♂♂♂♂♂");
+                map1.put("text2", "在做什么？");
                 result.add(map1);
             }
         }
