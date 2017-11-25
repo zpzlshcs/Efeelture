@@ -1,8 +1,6 @@
 package com.example.windows8.newef.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,6 +22,7 @@ import com.example.windows8.newef.R;
 import com.example.windows8.newef.fragment.MainFragment;
 import com.example.windows8.newef.fragment.MessageFragment;
 import com.example.windows8.newef.fragment.MomentFragment;
+import com.example.windows8.newef.util.SharedUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,9 +68,8 @@ public class MainActivity extends AppCompatActivity
         });
         View header = navigationView.getHeaderView(0);
         TextView uname = (TextView)header.findViewById(R.id.user_name) ;
-        SharedPreferences information = getSharedPreferences("information", Context.MODE_PRIVATE);
-        String uid =information .getString("uid","111111");
-        String name =information .getString("uname","111111");
+        String uid = SharedUtil.getParam("uid","111111").toString();
+        String name = SharedUtil.getParam("uname","111111").toString();
         if(name.equals("")){
             uname.setText(uid);
         }

@@ -1,8 +1,6 @@
 package com.example.windows8.newef.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
@@ -22,8 +20,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.windows8.newef.R;
-import com.example.windows8.newef.custom.CodeUtils;
-import com.example.windows8.newef.custom.getData;
+import com.example.windows8.newef.util.CodeUtils;
+import com.example.windows8.newef.util.SharedUtil;
+import com.example.windows8.newef.util.getData;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,9 +60,8 @@ public class LoginActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
         ButterKnife.bind(this);
-        SharedPreferences user = getSharedPreferences("information", Context.MODE_PRIVATE);
-        strpassword = user.getString("password", "");
-        strphone = user.getString("phone", "");
+        strpassword = SharedUtil.getParam("password", "").toString();
+        strphone = SharedUtil.getParam("phone", "").toString();
         phone.setText(strphone);
         password.setText(strpassword);
         codeUtils = CodeUtils.getInstance();
@@ -90,17 +88,11 @@ public class LoginActivity extends AppCompatActivity {
         anonymous.setOnClickListener(new View.OnClickListener() {// 匿名登录
             @Override
             public void onClick(View v) {
-                SharedPreferences user = getSharedPreferences("information", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = user.edit();
-                editor.putString("uid", "");
-                editor.putString("uname", "");
-                editor.putString("phone", "");
-                editor.putString("password", "");
-                editor.commit();
-                SharedPreferences islogin = getSharedPreferences("islogin", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor2 = islogin.edit();
-                editor2.putString("islogin", "0");
-                editor2.commit();
+                SharedUtil.saveParam("uid", "");
+                SharedUtil.saveParam("uname", "");
+                SharedUtil.saveParam("phone", "");
+                SharedUtil.saveParam("password", "");
+                SharedUtil.saveParam("islogin", "0");
 
                 Intent intent2 = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent2);
@@ -121,8 +113,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        SharedPreferences islogin = getSharedPreferences("islogin", Context.MODE_PRIVATE);
-        String isalreadlylogin = islogin.getString("islogin", "");
+        String isalreadlylogin = SharedUtil.getParam("islogin", "").toString();
         if(isalreadlylogin.equals("1")){
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
@@ -194,20 +185,14 @@ public class LoginActivity extends AppCompatActivity {
                         else{
                             try{
                                 JSONObject obj = result.getJSONObject("user");
-                                SharedPreferences user = getSharedPreferences("information", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = user.edit();
-                                editor.putString("uid", obj.getString("id"));
-                                editor.putString("uname", obj.getString("uname"));
-                                editor.putString("phone", obj.getString("phone"));
-                                editor.putString("password", obj.getString("upassword"));
-                                editor.commit();
+                                SharedUtil.saveParam("uid", obj.getString("id"));
+                                SharedUtil.saveParam("uname", obj.getString("uname"));
+                                SharedUtil.saveParam("phone", obj.getString("phone"));
+                                SharedUtil.saveParam("password", obj.getString("upassword"));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            SharedPreferences islogin = getSharedPreferences("islogin", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor2 = islogin.edit();
-                            editor2.putString("islogin", "1");
-                            editor2.commit();
+                            SharedUtil.saveParam("islogin", "1");
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);

@@ -1,7 +1,5 @@
 package com.example.windows8.newef.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,7 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.windows8.newef.R;
-import com.example.windows8.newef.custom.getData;
+import com.example.windows8.newef.util.SharedUtil;
+import com.example.windows8.newef.util.getData;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -43,17 +42,15 @@ public class AddFriendActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     @BindView(R.id.addfri_refresh)
     SwipeRefreshLayout refreshLayout;
-    SharedPreferences information;
     List<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
     CommonAdapter adapter;
+    int[] imagehead = {R.drawable.image_head,R.drawable.image_head2,R.drawable.image_head5,R.drawable.image_head4,R.drawable.image_head1,R.drawable.image_head5};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_friend);
         ButterKnife.bind(this);
-        information = getSharedPreferences("information", Context.MODE_PRIVATE);;
         recyclerView.setLayoutManager(new GridLayoutManager(this,1,GridLayoutManager.VERTICAL,false));
-        final int[] imagehead = {R.drawable.image_head,R.drawable.image_head2,R.drawable.image_head5,R.drawable.image_head4,R.drawable.image_head1,R.drawable.image_head5};
         adapter = new CommonAdapter<HashMap<String,Object>>(this,R.layout.item_recy_like,list) {
             @Override
             protected void convert(ViewHolder holder, final HashMap<String,Object> o, final int position) {
@@ -74,7 +71,7 @@ public class AddFriendActivity extends AppCompatActivity {
                             public boolean onOptionMenuClick(int position, OptionMenu menu) {
                                 switch (position){
                                     case 0:
-                                        String zson2  = "firstid:\"" + information.getString("uid","")
+                                        String zson2  = "firstid:\"" + SharedUtil.getParam("uid","")
                                                 + "\",secondid:\"" + o.get("uid")+"\"";
                                         new AsyncTask<String, Integer, JSONObject>() {
                                             @Override
@@ -113,11 +110,11 @@ public class AddFriendActivity extends AppCompatActivity {
             }
         };
         recyclerView.setAdapter(adapter);
-        new asyncTask().execute("id:\"" + information.getString("uid","")+"\"");
+        new asyncTask().execute("id:\"" + SharedUtil.getParam("uid","")+"\"");
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new asyncTask().execute("id:\"" + information.getString("uid","")+"\"");
+                new asyncTask().execute("id:\"" + SharedUtil.getParam("uid","")+"\"");
             }
         });
     }
@@ -129,6 +126,7 @@ public class AddFriendActivity extends AppCompatActivity {
                 break;
         }
     }
+    //获取好友列表
     private class asyncTask extends AsyncTask<String, Integer, JSONObject>{
         @Override
         protected JSONObject doInBackground(String... strings) {

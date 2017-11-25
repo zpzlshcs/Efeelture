@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <com.example.windows8.newef.clearedittext.ClearEditText
+        <com.example.windows8.newef.view.clearedittext.ClearEditText
             android:id="@+id/filter_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
                 android:listSelector="@drawable/selector_btn_selector" />
-            <com.example.windows8.newef.clearedittext.SideBar
+            <com.example.windows8.newef.view.clearedittext.SideBar
                 android:id="@+id/sidrbar"
                 android:layout_width="30.0dip"
                 android:layout_height="fill_parent"

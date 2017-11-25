@@ -9,8 +9,8 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.example.windows8.newef.R;
-import com.example.windows8.newef.clearedittext.ImageTextView;
-import com.example.windows8.newef.clearedittext.SortModel;
+import com.example.windows8.newef.bean.SortModel;
+import com.example.windows8.newef.view.ImageTextView;
 
 import java.util.List;
 /**
@@ -74,6 +74,8 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer{
 		}
 	
 		viewHolder.tvTitle.setText(this.list.get(position).getName());
+		viewHolder.icon.setText(this.list.get(position).getName());
+		viewHolder.icon.setIconText(mContext,this.list.get(position).getName());
 		return view;
 
 	}

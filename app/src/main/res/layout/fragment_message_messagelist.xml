@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <com.example.windows8.newef.custom.VerticalSwipeRefreshLayout
+        <com.example.windows8.newef.view.VerticalSwipeRefreshLayout
             android:id="@+id/message_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
@@ -17,6 +17,6 @@
                 android:id="@+id/chatlist_swipelistview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-        </com.example.windows8.newef.custom.VerticalSwipeRefreshLayout>
+        </com.example.windows8.newef.view.VerticalSwipeRefreshLayout>
     </FrameLayout>
 </LinearLayout>

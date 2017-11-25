@@ -1,7 +1,5 @@
 package com.example.windows8.newef.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -15,7 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.windows8.newef.R;
-import com.example.windows8.newef.custom.getData;
+import com.example.windows8.newef.util.SharedUtil;
+import com.example.windows8.newef.util.getData;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -38,18 +37,16 @@ public class AddHardActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     @BindView(R.id.addfri_refresh)
     SwipeRefreshLayout refreshLayout;
-    SharedPreferences information;
     List<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
     CommonAdapter adapter;
     private long clickTime = 0;
+    int[] imagehead = {R.drawable.image_icebox,R.drawable.image_tv,R.drawable.image_wind,R.drawable.image_light};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_hard);
         ButterKnife.bind(this);
-        information = getSharedPreferences("information", Context.MODE_PRIVATE);;
         recyclerView.setLayoutManager(new GridLayoutManager(this,1,GridLayoutManager.VERTICAL,false));
-        final int[] imagehead = {R.drawable.image_icebox,R.drawable.image_tv,R.drawable.image_wind,R.drawable.image_light};
         adapter = new CommonAdapter<HashMap<String,Object>>(this,R.layout.item_recy_hard,list) {
             @Override
             protected void convert(ViewHolder holder, final HashMap<String,Object> o, final int position) {
@@ -59,7 +56,7 @@ public class AddHardActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         if (SystemClock.uptimeMillis() - clickTime <= 1500) {
-                            String zson2  = "uid:\"" + information.getString("uid","")
+                            String zson2  = "uid:\"" + SharedUtil.getParam("uid","")
                                     + "\",hardwareid:\"" + o.get("id")+"\"";
                             new AsyncTask<String, Integer, JSONObject>() {
                                 @Override
@@ -111,6 +108,7 @@ public class AddHardActivity extends AppCompatActivity {
                 break;
         }
     }
+    //获取当前设备列表
     private class asyncTask extends AsyncTask<String, Integer, JSONObject>{
         @Override
         protected JSONObject doInBackground(String... strings) {

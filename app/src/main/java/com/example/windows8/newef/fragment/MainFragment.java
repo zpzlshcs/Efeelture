@@ -105,8 +105,6 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 //      		.showAsDropDown(moreBtn)
                 break;
             case R.id.image_sport:
-//                Intent sport = new Intent(getActivity(), SportActivity.class);
-//                startActivity(sport);
         }
     }
 }

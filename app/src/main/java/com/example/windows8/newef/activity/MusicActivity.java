@@ -25,7 +25,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.windows8.newef.R;
-import com.example.windows8.newef.Service.MusicService;
+import com.example.windows8.newef.service.MusicService;
 import com.example.windows8.newef.adapter.MyAadapter;
 import com.example.windows8.newef.bean.LrcModel;
 import com.example.windows8.newef.bean.Model;

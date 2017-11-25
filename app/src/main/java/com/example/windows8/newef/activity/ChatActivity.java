@@ -1,7 +1,5 @@
 package com.example.windows8.newef.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,7 +12,8 @@ import android.widget.TextView;
 import com.example.windows8.newef.R;
 import com.example.windows8.newef.adapter.ChatAdapter;
 import com.example.windows8.newef.bean.chatcontent;
-import com.example.windows8.newef.custom.saveData;
+import com.example.windows8.newef.util.SharedUtil;
+import com.example.windows8.newef.util.saveData;
 
 import java.util.ArrayList;
 
@@ -35,7 +34,6 @@ public class ChatActivity extends AppCompatActivity {
     @BindView(R.id.iv_back)
     ImageView back;
     String uid;
-    SharedPreferences user;
     saveData chatmessages;
     ChatAdapter adapter;
     ArrayList<chatcontent> list = new ArrayList<chatcontent>();
@@ -45,8 +43,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
         chattalkto.setText(talkto);
-        user = getSharedPreferences("information", Context.MODE_PRIVATE);
-        uid = user.getString("uid","");
+        uid = SharedUtil.getParam("uid","").toString();
         chatmessages = new saveData(ChatActivity.this, "chatmessages");
         list = chatmessages.getDataList(uid + talkto);
         adapter = new ChatAdapter(list,uid,ChatActivity.this);

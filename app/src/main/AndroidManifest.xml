@@ -21,7 +21,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
-        android:name="com.mob.MobApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_app"
         android:label="@string/app_name"
@@ -53,9 +53,7 @@
         <activity android:name=".activity.LikesActivity" />
         <activity android:name=".activity.AboutmeActivity" />
         <activity android:name=".activity.RegisterNextActivity" />
-
-        <service android:name=".Service.MusicService" />
-        <service android:name=".Service.StepService"/>
+        <service android:name=".service.MusicService" />
 
         <meta-data
             android:name="Mob-AppKey"
@@ -71,7 +69,6 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".activity.ChangePasswordActivity" />
         <activity android:name=".activity.MusicActivity" />
-        <activity android:name=".activity.SportActivity"></activity>
     </application>
 
 </manifest>

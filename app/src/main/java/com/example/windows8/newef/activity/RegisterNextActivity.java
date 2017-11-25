@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.windows8.newef.R;
-import com.example.windows8.newef.custom.getData;
+import com.example.windows8.newef.util.getData;
 
 import org.json.JSONObject;
 

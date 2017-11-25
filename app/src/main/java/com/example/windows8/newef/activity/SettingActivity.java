@@ -1,8 +1,6 @@
 package com.example.windows8.newef.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.windows8.newef.R;
+import com.example.windows8.newef.util.SharedUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,17 +32,11 @@ public class SettingActivity extends AppCompatActivity {
     public void onClick(View v){
         switch (v.getId()){
             case R.id.btn_exit:
-                SharedPreferences user = getSharedPreferences("information", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = user.edit();
-                editor.putString("uid", "");
-                editor.putString("uname", "");
-                editor.putString("phone", "");
-                editor.putString("password", "");
-                editor.commit();
-                SharedPreferences islogin = getSharedPreferences("islogin", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor2 = islogin.edit();
-                editor2.putString("islogin", "0");
-                editor2.commit();
+                SharedUtil.saveParam("uid", "");
+                SharedUtil.saveParam("uname", "");
+                SharedUtil.saveParam("phone", "");
+                SharedUtil.saveParam("password", "");
+                SharedUtil.saveParam("islogin", "0");
                 Intent login = new Intent(SettingActivity.this,LoginActivity.class);
                 startActivity(login);
                 finish();

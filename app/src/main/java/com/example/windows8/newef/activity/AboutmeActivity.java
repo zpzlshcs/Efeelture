@@ -1,7 +1,5 @@
 package com.example.windows8.newef.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,7 +19,6 @@ public class AboutmeActivity extends AppCompatActivity {
     ImageView back;
     @BindView(R.id.btn_edit_my_info)
     Button myinfo;
-    private SharedPreferences information;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +31,6 @@ public class AboutmeActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
         ButterKnife.bind(this);
-        information = getSharedPreferences("information", Context.MODE_PRIVATE);
     }
     @OnClick({R.id.toolbar_back})
     public void onClick(View v){

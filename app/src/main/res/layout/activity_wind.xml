@@ -94,7 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="90dp" >
 
-                    <com.example.windows8.newef.custom.PickerView
+                    <com.example.windows8.newef.view.PickerView
                         android:id="@+id/minute_pv"
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"

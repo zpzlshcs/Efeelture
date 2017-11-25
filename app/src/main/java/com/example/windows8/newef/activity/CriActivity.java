@@ -1,8 +1,6 @@
 package com.example.windows8.newef.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -19,8 +17,9 @@ import android.widget.Toast;
 
 import com.example.windows8.newef.R;
 import com.example.windows8.newef.adapter.CriAdapter;
-import com.example.windows8.newef.custom.RecyScroll;
-import com.example.windows8.newef.custom.getData;
+import com.example.windows8.newef.util.SharedUtil;
+import com.example.windows8.newef.util.getData;
+import com.example.windows8.newef.view.RecyScroll;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,8 +59,7 @@ public class CriActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
         ButterKnife.bind(this);
-        SharedPreferences cys2 = this.getSharedPreferences("information", Context.MODE_PRIVATE);
-        uid = cys2.getString("uid", "");
+        uid = SharedUtil.getParam("uid", "").toString();
         GridLayoutManager mLayoutManager=new GridLayoutManager(CriActivity.this,1,GridLayoutManager.VERTICAL,false);//设置为一个1列的纵向网格布局
         recyclerView.setLayoutManager(mLayoutManager);
         adapter = new CriAdapter(this,list,uid);
@@ -84,6 +82,7 @@ public class CriActivity extends AppCompatActivity {
         });
         new ConstactAsyncTask().execute("");
     }
+    //获取朋友圈，及点赞、回复信息
     private class ConstactAsyncTask extends AsyncTask<String, Integer, List<HashMap<String,Object>>> {   //异步加载数据
 
         @Override

@@ -1,9 +1,7 @@
 package com.example.windows8.newef.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Looper;
@@ -23,11 +21,12 @@ import android.widget.Toast;
 import com.example.windows8.newef.R;
 import com.example.windows8.newef.activity.ChatActivity;
 import com.example.windows8.newef.adapter.SortAdapter;
-import com.example.windows8.newef.clearedittext.CharacterParser;
-import com.example.windows8.newef.clearedittext.ClearEditText;
-import com.example.windows8.newef.clearedittext.PinyinComparator;
-import com.example.windows8.newef.clearedittext.SideBar;
-import com.example.windows8.newef.clearedittext.SortModel;
+import com.example.windows8.newef.bean.SortModel;
+import com.example.windows8.newef.util.CharacterParser;
+import com.example.windows8.newef.util.PinyinComparator;
+import com.example.windows8.newef.util.SharedUtil;
+import com.example.windows8.newef.view.ClearEditText;
+import com.example.windows8.newef.view.SideBar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -63,8 +62,7 @@ public class FriendListFragment extends LazyFragment {
     private String uid = "";
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = getActivity().getLayoutInflater().inflate(R.layout.fragment_message_friendlist, null);
-        SharedPreferences cys2 = getActivity().getSharedPreferences("information", Context.MODE_PRIVATE);
-        uid = cys2.getString("uid", "");
+        uid = SharedUtil.getParam("uid", "").toString();
         initView();
         initData();
         return view;
@@ -107,13 +105,10 @@ public class FriendListFragment extends LazyFragment {
                 // 内部存储有关于聊天人的id
                 String friendid = SourceDateList.get(position).getName().toString();
                 Log.d("talkto", friendid);
-                SharedPreferences talklist = getActivity().getSharedPreferences("talklist", Context.MODE_PRIVATE);// 获取聊天人列表
-                String oldlist = talklist.getString(uid, "");// talklist中存放和uid拥有者聊天过的人的名单列表用“，”隔开
+                String oldlist = SharedUtil.getParam("talklist"+uid, "").toString();// talklist中存放和uid拥有者聊天过的人的名单列表用“，”隔开
                 Log.d("oldlist", oldlist);
                 if (oldlist == "") {
-                    SharedPreferences.Editor editor = talklist.edit();
-                    editor.putString(uid, friendid);// 将新数据存进talklist中
-                    editor.commit();
+                    SharedUtil.saveParam("talklist"+uid, friendid);// 将新数据存进talklist中
                     MessageListFragment.talkto = friendid;
                 } else {
                     String oldlistcut[] = oldlist.split(",");
@@ -125,12 +120,10 @@ public class FriendListFragment extends LazyFragment {
 
                         }
                     }
-                    SharedPreferences.Editor editor = talklist.edit();
-                    editor.putString(uid, "" + oldlist + talkto);// 将新数据存进talklist中
-                    editor.commit();
+                    SharedUtil.saveParam(uid, "" + oldlist + talkto);// 将新数据存进talklist中
                     MessageListFragment.talkto = "" + oldlist + talkto;
                     if (talkto != "") {
-                        MessageListFragment.talkto = talklist.getString(uid, "");
+                        MessageListFragment.talkto = SharedUtil.getParam(uid, "").toString();
                         HashMap<String, Object> map1 = new HashMap<String, Object>();
                         map1.put("image", R.drawable.side_nav_bar);
                         map1.put("text", friendid);
@@ -192,8 +185,7 @@ public class FriendListFragment extends LazyFragment {
                 urlConnection.setRequestMethod("POST");
                 urlConnection.setReadTimeout(5000);
                 urlConnection.setConnectTimeout(5000);
-                SharedPreferences information = getActivity().getSharedPreferences("information", Context.MODE_PRIVATE);
-                String uid = information.getString("uid", "");
+                String uid = SharedUtil.getParam("uid", "").toString();
                 String data = "func=1014" + "&zson={firstid:\"" + URLEncoder.encode(uid, "UTF-8") + "\",fstatus:\""
                         + URLEncoder.encode("1", "UTF-8") + "\"}";
                 urlConnection.setRequestProperty("Connection", "keep-alive");

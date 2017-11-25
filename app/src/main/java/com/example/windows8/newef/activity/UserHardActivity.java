@@ -1,7 +1,5 @@
 package com.example.windows8.newef.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -15,7 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.windows8.newef.R;
-import com.example.windows8.newef.custom.getData;
+import com.example.windows8.newef.util.SharedUtil;
+import com.example.windows8.newef.util.getData;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -39,7 +38,6 @@ public class UserHardActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     @BindView(R.id.addfri_refresh)
     SwipeRefreshLayout refreshLayout;
-    SharedPreferences information;
     List<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
     CommonAdapter adapter;
     private long clickTime = 0;
@@ -48,7 +46,6 @@ public class UserHardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_hard);
         ButterKnife.bind(this);
-        information = getSharedPreferences("information", Context.MODE_PRIVATE);;
         recyclerView.setLayoutManager(new GridLayoutManager(this,1,GridLayoutManager.VERTICAL,false));
         final int[] imagehead = {R.drawable.image_icebox,R.drawable.image_tv,R.drawable.image_wind,R.drawable.image_light};
         adapter = new CommonAdapter<HashMap<String,Object>>(this,R.layout.item_recy_hard,list) {
@@ -96,11 +93,11 @@ public class UserHardActivity extends AppCompatActivity {
             }
         };
         recyclerView.setAdapter(adapter);
-        new asyncTask().execute("uid:\"" + information.getString("uid","")+"\"");
+        new asyncTask().execute("uid:\"" + SharedUtil.getParam("uid","")+"\"");
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new asyncTask().execute("uid:\"" + information.getString("uid","")+"\"");
+                new asyncTask().execute("uid:\"" + SharedUtil.getParam("uid","")+"\"");
             }
         });
     }

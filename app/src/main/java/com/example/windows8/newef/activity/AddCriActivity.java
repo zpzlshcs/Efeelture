@@ -1,7 +1,5 @@
 package com.example.windows8.newef.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.windows8.newef.R;
-import com.example.windows8.newef.custom.getData;
+import com.example.windows8.newef.util.SharedUtil;
+import com.example.windows8.newef.util.getData;
 
 import org.json.JSONObject;
 
@@ -36,8 +35,6 @@ public class AddCriActivity extends AppCompatActivity {
     TextView textnum;
     @BindView(R.id.iv_back)
     ImageView back;
-    private SharedPreferences cricontent;
-    private SharedPreferences.Editor editor;
     private String uid;
     private String uname;
     @Override
@@ -46,11 +43,9 @@ public class AddCriActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_cri);
         ButterKnife.bind(this);
         content.addTextChangedListener(mTextWatcher);
-        cricontent = getSharedPreferences("information", Context.MODE_PRIVATE);
-        editor = cricontent.edit();
-        content.setText(cricontent.getString("cricontent",""));
-        uid = cricontent.getString("uid","");
-        uname = cricontent.getString("uname","");
+        content.setText(SharedUtil.getParam("cricontent","").toString());
+        uid = SharedUtil.getParam("uid","").toString();
+        uname = SharedUtil.getParam("uname","").toString();
     }
     //输入框字数限制
     private static final int WEIBO_CONTENT_LENGTH_LIMITED = 150;
@@ -85,47 +80,49 @@ public class AddCriActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.add_tt_save:
-                editor.putString("cricontent", content.getText().toString());
-                editor.commit();
+                SharedUtil.saveParam("cricontent", content.getText());
                 finish();
                 break;
             case R.id.add_tt_send:
                 if(content.getText().length()!=0){
-                    try {
-                        String sendcontent = content.getText().toString();
-                        String zson2  = "uid:\"" + uid
-                                + "\",content:\"" + URLEncoder.encode(sendcontent, "UTF-8")
-                                + "\",mtype:\"" + 1
-                                + "\",uname:\"" + uname + "\"";
-                        new AsyncTask<String, Integer, JSONObject>() {
-                            @Override
-                            protected JSONObject doInBackground(String... strings) {
-                                JSONObject result2 = new getData(strings[0],AddCriActivity.this,"1051").getResult();
-                                return result2;
-                            }
-                            @Override
-                            protected void onPostExecute(JSONObject result) {
-                                super.onPostExecute(result);
-                                if(result == null){
-                                    Toast.makeText(AddCriActivity.this, "发表失败", Toast.LENGTH_SHORT).show();
-                                }
-                                else{
-                                    Toast.makeText(AddCriActivity.this, "发表成功", Toast.LENGTH_SHORT).show();
-                                    editor.putString("cricontent", "");
-                                    editor.commit();
-                                    AddCriActivity.this.finish();
-                                }
-                            }
-                            @Override
-                            protected void onPreExecute() {
-                                super.onPreExecute();
-                            }
-                        }.execute(zson2);
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
+                    sendCri();
                 }
                 break;
+        }
+    }
+    //发送朋友圈
+    public void sendCri(){
+        try {
+            String sendcontent = content.getText().toString();
+            String zson2  = "uid:\"" + uid
+                    + "\",content:\"" + URLEncoder.encode(sendcontent, "UTF-8")
+                    + "\",mtype:\"" + 1
+                    + "\",uname:\"" + uname + "\"";
+            new AsyncTask<String, Integer, JSONObject>() {
+                @Override
+                protected JSONObject doInBackground(String... strings) {
+                    JSONObject result2 = new getData(strings[0],AddCriActivity.this,"1051").getResult();
+                    return result2;
+                }
+                @Override
+                protected void onPostExecute(JSONObject result) {
+                    super.onPostExecute(result);
+                    if(result == null){
+                        Toast.makeText(AddCriActivity.this, "发表失败", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(AddCriActivity.this, "发表成功", Toast.LENGTH_SHORT).show();
+                        SharedUtil.saveParam("cricontent", "");
+                        AddCriActivity.this.finish();
+                    }
+                }
+                @Override
+                protected void onPreExecute() {
+                    super.onPreExecute();
+                }
+            }.execute(zson2);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
     }
 }

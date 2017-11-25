@@ -1,8 +1,6 @@
 package com.example.windows8.newef.fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -19,8 +17,9 @@ import com.example.windows8.newef.R;
 import com.example.windows8.newef.activity.ChatActivity;
 import com.example.windows8.newef.adapter.chatlistadapter;
 import com.example.windows8.newef.bean.chatcontent;
-import com.example.windows8.newef.custom.VerticalSwipeRefreshLayout;
-import com.example.windows8.newef.custom.saveData;
+import com.example.windows8.newef.util.SharedUtil;
+import com.example.windows8.newef.util.saveData;
+import com.example.windows8.newef.view.VerticalSwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,11 +56,9 @@ public class MessageListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_message_messagelist,container,false);
         unbinder = ButterKnife.bind(this, view);
         chatmessages = new saveData(getActivity(), "chatmessages");
-        SharedPreferences information = getActivity().getSharedPreferences("information", Context.MODE_PRIVATE);
-        uid = information.getString("uid", "");
+        uid = SharedUtil.getParam("uid", "").toString();
         Data.clear();
-        SharedPreferences talklist = getActivity().getSharedPreferences("talklist", Context.MODE_PRIVATE);// 获取聊天人列表
-        talkto = talklist.getString(uid, "");
+        talkto = SharedUtil.getParam("talklist"+uid, "").toString();
         talktolist = talkto.split(",");
         if (talkto != "") {
             Data = stirngtolist(talkto);
@@ -149,19 +146,15 @@ public class MessageListFragment extends Fragment {
             }
             else talkto = ""+map.get("text");
         }
-        SharedPreferences talklist = getActivity().getSharedPreferences("talklist", Context.MODE_PRIVATE);// 获取聊天人列表
-        SharedPreferences.Editor editor = talklist.edit();
-        editor.remove(uid);
-        editor.putString(uid, talkto);
-        editor.commit();
+        SharedUtil.saveParam("talklist"+uid,"");
+        SharedUtil.saveParam("talklist"+uid, talkto);
 
 
     }
 
     public void refresh() {
         Data.clear();
-        SharedPreferences talklist = getActivity().getSharedPreferences("talklist", Context.MODE_PRIVATE);// 获取聊天人列表
-        talkto = talklist.getString(uid, "");
+        talkto = SharedUtil.getParam("talklist"+uid, "").toString();
         talktolist = talkto.split(",");
         if (talkto != "") {
             System.out.println(talkto);

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.windows8.newef.R;
-import com.example.windows8.newef.custom.PickerView;
+import com.example.windows8.newef.view.PickerView;
 
 import java.util.ArrayList;
 import java.util.List;
